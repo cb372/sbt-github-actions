@@ -383,7 +383,8 @@ ${indent(jobs.map(compileJob(_, sbt)).mkString("\n\n"), 1)}"""
           name = Some("Cache ivy2"),
           params = Map(
             "path" -> "~/.ivy2/cache",
-            "key" -> s"$${{ runner.os }}-sbt-ivy-cache-$hashesStr")),
+            "key" -> s"$${{ runner.os }}-sbt-ivy-cache-$hashesStr",
+            "restore-keys" -> "${{ runner.os }}-sbt-ivy-cache-")),
 
         WorkflowStep.Use(
           "actions",
@@ -392,7 +393,8 @@ ${indent(jobs.map(compileJob(_, sbt)).mkString("\n\n"), 1)}"""
           name = Some("Cache coursier (generic)"),
           params = Map(
             "path" -> "~/.coursier/cache/v1",
-            "key" -> s"$${{ runner.os }}-generic-sbt-coursier-cache-$hashesStr")),
+            "key" -> s"$${{ runner.os }}-generic-sbt-coursier-cache-$hashesStr",
+            "restore-keys" -> "${{ runner.os }}-generic-sbt-coursier-cache-")),
 
         WorkflowStep.Use(
           "actions",
@@ -402,7 +404,8 @@ ${indent(jobs.map(compileJob(_, sbt)).mkString("\n\n"), 1)}"""
           cond = Some(s"contains(runner.os, 'linux')"),
           params = Map(
             "path" -> "~/.cache/coursier/v1",
-            "key" -> s"$${{ runner.os }}-sbt-coursier-cache-$hashesStr")),
+            "key" -> s"$${{ runner.os }}-sbt-coursier-cache-$hashesStr",
+            "restore-keys" -> "${{ runner.os }}-sbt-coursier-cache-")),
 
         WorkflowStep.Use(
           "actions",
@@ -412,7 +415,8 @@ ${indent(jobs.map(compileJob(_, sbt)).mkString("\n\n"), 1)}"""
           cond = Some(s"contains(runner.os, 'macos')"),
           params = Map(
             "path" -> "~/Library/Caches/Coursier/v1",
-            "key" -> s"$${{ runner.os }}-sbt-coursier-cache-$hashesStr")),
+            "key" -> s"$${{ runner.os }}-sbt-coursier-cache-$hashesStr",
+            "restore-keys" -> "${{ runner.os }}-sbt-coursier-cache-")),
 
         WorkflowStep.Use(
           "actions",
@@ -422,7 +426,8 @@ ${indent(jobs.map(compileJob(_, sbt)).mkString("\n\n"), 1)}"""
           cond = Some(s"contains(runner.os, 'windows')"),
           params = Map(
             "path" -> "~/AppData/Local/Coursier/Cache/v1",
-            "key" -> s"$${{ runner.os }}-sbt-coursier-cache-$hashesStr")),
+            "key" -> s"$${{ runner.os }}-sbt-coursier-cache-$hashesStr",
+            "restore-keys" -> "${{ runner.os }}-sbt-coursier-cache-")),
 
         WorkflowStep.Use(
           "actions",
@@ -431,7 +436,8 @@ ${indent(jobs.map(compileJob(_, sbt)).mkString("\n\n"), 1)}"""
           name = Some("Cache sbt"),
           params = Map(
             "path" -> "~/.sbt",
-            "key" -> s"$${{ runner.os }}-sbt-cache-$hashesStr")))
+            "key" -> s"$${{ runner.os }}-sbt-cache-$hashesStr",
+            "restore-keys" -> "${{ runner.os }}-sbt-cache-")))
     },
 
     githubWorkflowGeneratedCI := {
